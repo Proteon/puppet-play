@@ -1,0 +1,18 @@
+# DO NOT EDIT, managed by Puppet
+# Play production configuration file
+include "application.conf"
+http.port="<%= port %>"
+http.address="<%= ip %>"
+applyEvolutions.default=true
+applyDownEvolutions.default=true
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://<%= db_host %>:<%= db_port %>/<%= real_db_name %>?characterEncoding=UTF-8"
+db.default.user=<%= real_db_user %>
+db.default.password="<%= db_password %>"
+# TODO how to use evolutions in production???
+#evolutionplugin=disabled
+logger.root=INFO
+logger.play=INFO
+logger.application=INFO
+
+<%= cmdline_options %>

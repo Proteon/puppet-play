@@ -1,0 +1,4 @@
+#!/bin/sh
+# DO NOT EDIT, managed by puppet
+# play shutdown script
+kill `lsof -i :<%= port %> | grep LISTEN | awk '{print \$2}'`

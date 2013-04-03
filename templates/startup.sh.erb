@@ -1,0 +1,9 @@
+#!/bin/sh
+# DO NOT EDIT, managed by puppet
+# play startup script
+OPTIONS="-Dconfig.file=<%= config_file %> -Xms128M -Xmx<%= max_memory %>m -server -Dsbt.log.noformat"
+cd ~/<%= app %>/<%= nexus_artifact %>
+sh start $OPTIONS > ~/<%= app %>.log 2>&1 & 
+sleep 5
+# check whether process still exists
+kill -0 $!
