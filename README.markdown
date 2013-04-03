@@ -1,6 +1,10 @@
-# play #
+# puppet-play #
 
-This puppet module provides:
+This module aims to handle installation and deployment features for 
+Play 2 Framework apps (http://www.playframework.com/).
+
+Specifically, it provides:
+
 - Play Framework runtime installation (optional)
 - Play application deployment from Nexus repository (play runtime not needed)
 
