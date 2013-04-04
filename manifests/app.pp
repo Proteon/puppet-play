@@ -26,6 +26,7 @@
 #        nexus_artifact  => 'test-app',
 #        nexus_version   => '1.0.0-SNAPSHOT',
 #        nexus_snapshots => true,
+#        db_password     => 'mysecretpassword',
 #    }
 #
 # === Authors
