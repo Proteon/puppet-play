@@ -14,4 +14,8 @@ At the moment, only tested on Ubuntu 12.04.
 
 Note: also depends on the nexus module which is not yet available to the general public.'
 dependency 'puppetlabs/mysql', '>=0.6.1'
-dependency 'proteon/java', '>=0.1.0'
+
+# Librarian-puppet does not appear to like dependencies which are not in (a)
+# forge. You can find this dependency at:
+# https://github.com/Proteon/puppet-java
+# dependency 'proteon/java', '>=0.1.0
