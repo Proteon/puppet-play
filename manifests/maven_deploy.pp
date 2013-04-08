@@ -42,7 +42,7 @@ define play::maven_deploy ($user, $dir, $groupid, $artifactid, $version,) {
 
     exec { "unzip_${name}":
         cwd         => $dir,
-        command     => "rm -rf ${name} && unzip ${zip_file} -d ${name} && mv ${name}/* ${name}/${artifact} && chown -R ${user} ${name}",
+        command     => "rm -rf ${name} && unzip ${zip_file} -d ${name} && mv ${name}/* ${name}/${artifactid} && chown -R ${user} ${name}",
         refreshonly => true,
     }
 }
