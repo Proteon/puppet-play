@@ -7,7 +7,8 @@
 # [*nexus_group*] The artifact group.
 # [*nexus_artifact*] The artifact name.
 # [*nexus_snapshots*] true means the repository contains snapshots, false means releases.
-# [*db_host*] The host for the app's database. If localhost, a local mysql server is setup and configured. If not localhost, the configuration should
+# [*db_host*] The host for the app's database. If localhost, a local mysql server is setup and configured. If not localhost, the
+# configuration should
 # be done elsewhere.
 # [*db_port*] Port of the database server, defaults to 3306.
 # [*db_name*] Database name, defaults to app name.
@@ -17,7 +18,7 @@
 # [*port*] The port the app should listen on, defaults to 9000.
 # [*max_memory*] The max memory of the jvm for the app, defaults to 512 MB.
 # [*cmdline_options*] The optional command line options for the play app.
-#  
+#
 # === Examples
 #
 #   play:app { 'test-app':
@@ -39,28 +40,23 @@
 #
 define play::app (
     $user,
-    $nexus_group, 
-    $nexus_artifact, 
-    $nexus_version, 
-    $nexus_snapshots    = true,
-    $db_host            = 'localhost',
-    $db_port            = '3306',
-    $db_name            = undef,
-    $db_user            = undef,
+    $maven_groupid,
+    $maven_artifactid,
+    $maven_version,
+    $db_host         = 'localhost',
+    $db_port         = '3306',
+    $db_name         = undef,
+    $db_user         = undef,
     $db_password,
-    $ip                 = '0.0.0.0',
-    $port               = '9000',
-    $max_memory         = '512', 
-    $cmdline_options    = '',
-) {
-        
+    $ip              = '0.0.0.0',
+    $port            = '9000',
+    $max_memory      = '512',
+    $cmdline_options = '',) {
     include play
     include mysql
-    
-    if !defined (Package[zip]) {
-        package { 'zip':
-            ensure => installed,
-        }
+
+    if !defined(Package[zip]) {
+        package { 'zip': ensure => installed, }
     }
     $app = $name
     $user_home = "${play::params::appsdir}/${user}"
@@ -80,28 +76,28 @@ define play::app (
 
     if $db_host == 'localhost' {
         include mysql::server
+
         mysql::db { $real_db_name:
-            user        => $real_db_user,
-            password    => $db_password,
+            user     => $real_db_user,
+            password => $db_password,
         }
     }
 
     file { $user_home:
-        ensure  => directory,
-        owner   => $user,
-        group   => 'play',
+        ensure => directory,
+        owner  => $user,
+        group  => 'play',
     }
 
     file { "${user_home}/bin":
-        ensure  => directory,
-        owner   => $user,
-        group   => 'play',
+        ensure => directory,
+        owner  => $user,
+        group  => 'play',
     }
 
     $config_file = "${user_home}/${app}.conf"
-    file { $config_file:
-        content => template('play/conf.erb'),
-    }
+
+    file { $config_file: content => template('play/conf.erb'), }
 
     file { "${user_home}/bin/startup.sh":
         owner   => 'root',
@@ -118,17 +114,16 @@ define play::app (
     }
 
     user { $user:
-        home        => $user_home,
-        groups      => ['play'],
+        home   => $user_home,
+        groups => ['play'],
     }
 
-    play::nexus_deploy { $app:
-        dir         => $user_home,
-        user        => $user,
-        group       => $nexus_group,
-        artifact    => $nexus_artifact,
-        version     => $nexus_version,
-        snapshots   => $nexus_snapshots,
-        require     => File[$user_home],
+    play::maven_deploy { $app:
+        dir        => $user_home,
+        user       => $user,
+        groupid    => $maven_groupid,
+        artifactid => $maven_artifactid,
+        version    => $maven_version,
+        require    => File[$user_home],
     }
 }

@@ -1,19 +1,19 @@
 {
   "name": "proteon-play",
   "author": "Proteon",
-  "description": "This puppet module provides:\n- Play Framework runtime installation (optional)\n- Play application deployment from Nexus repository (play runtime not needed)\n\nAt the moment, only tested on Ubuntu 12.04.\n\nNote: also depends on the nexus module which is not yet available to the general public.",
+  "description": "This puppet module provides:\n- Play Framework runtime installation (optional)\n- Play application deployment from Nexus repository (play runtime not needed)\n\nAt the moment, only tested on Ubuntu 12.04.\n\nNote: also depends on the proteon/maven module.",
   "license": "Apache License 2.0",
   "project_page": "https://github.com/Proteon/puppet-play",
   "source": "https://github.com/Proteon/puppet-play",
   "summary": "Deploy play runtime and play apps",
   "version": "0.1.0",
   "checksums": {
-    "Modulefile": "d26ed3c3151d6abef34be8b87e76fe57",
-    "README.markdown": "bf9717fbc61284e84143e344b8c8957c",
+    "Modulefile": "ae2821c27900eca61d889af5e75c5630",
+    "README.markdown": "c2c38af10039fbfb3cea94002c83583b",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
-    "manifests/app.pp": "1a4491e258d74e05b0d77a05f4204b90",
+    "manifests/app.pp": "e8a792e1f5d70a6c9729f6f98b209b7c",
     "manifests/init.pp": "64cb11e349a3af0754313087a8844a8f",
-    "manifests/nexus_deploy.pp": "3f63b0ec715b22fe21f03c25ab16a868",
+    "manifests/maven_deploy.pp": "c904fb17a4ea4a6de75618ac82e901c5",
     "manifests/params.pp": "774d1e6ed79d1ba9883285558a14313f",
     "manifests/runtime.pp": "b615bf17bef5e6f5e865f852f0c3f15d",
     "manifests/service.pp": "64bf2dc3c6ce09c6c39dcf19bd057a6e",
@@ -21,17 +21,13 @@
     "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
     "templates/conf.erb": "afbf91bb59614f5e5c3ece7c19a602bc",
     "templates/shutdown.sh.erb": "7106e1dc1732b77e730c5337c51183cd",
-    "templates/startup.sh.erb": "49d39cdbbb07535d4a9b56cf5fed232d",
+    "templates/startup.sh.erb": "a1c5ad7ca7357462d626dbb37d7e05dc",
     "tests/init.pp": "3274a2d4938d96816053b2536a39209b"
   },
   "dependencies": [
     {
       "name": "puppetlabs/mysql",
       "version_requirement": "\u003e\u003d0.6.1"
-    },
-    {
-      "name": "proteon/java",
-      "version_requirement": "\u003e\u003d0.1.0"
     }
   ]
 }

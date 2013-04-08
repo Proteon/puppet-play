@@ -9,7 +9,7 @@
 # [*artifact*] The artifact name.
 # [*version*] The artifact version.
 # [*url*] the url to the artifact repository.
-#  
+#
 # === Examples
 #
 #   play:nexus_deploy { 'test-app':
@@ -29,40 +29,20 @@
 #
 # Copyright 2013 Proteon
 #
-define play::nexus_deploy(
-    $user,
-    $dir,
-    $group,
-    $artifact,
-    $version,
-    $url        = undef,
-    $snapshots  = true,
-) {
+define play::maven_deploy ($user, $dir, $groupid, $artifactid, $version,) {
+    $zip_file = "${artifactid}-${version}.zip"
 
-    $app = $name
-    $repository = $snapshots ? {
-        true    => 'snapshots',
-        false   => 'releases',
-        default => 'snapshots',
+    maven { "${dir}/${zip_file}":
+        groupid    => $groupid,
+        artifactid => $artifactid,
+        version    => $version,
+        packaging  => 'zip',
+        notify     => Exec["unzip_${name}"],
     }
-
-    nexus::artifact { $name:
-        ensure      => present,
-        url         => $url,
-        group       => $group,
-        artifact    => $artifact,
-        version     => $version,
-        repository  => $repository,
-        packaging   => 'zip',
-        cwd         => $dir,
-        notify      => Exec["unzip_${name}"],
-    }
-
-    $zip_file   = "${artifact}-${version}.zip"
 
     exec { "unzip_${name}":
         cwd         => $dir,
-        command     => "rm -rf ${app} && unzip ${zip_file} -d ${app} && mv ${app}/* ${app}/${artifact} && chown -R ${user} ${app}",
-        refreshonly => true, 
+        command     => "rm -rf ${name} && unzip ${zip_file} -d ${name} && mv ${name}/* ${name}/${artifact} && chown -R ${user} ${name}",
+        refreshonly => true,
     }
 }
