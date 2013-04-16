@@ -10,10 +10,11 @@
   "checksums": {
     "Modulefile": "ae2821c27900eca61d889af5e75c5630",
     "README.markdown": "c2c38af10039fbfb3cea94002c83583b",
+    "README.md": "ffcbcff11ca64f5b37d2fd200fca8d85",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
-    "manifests/app.pp": "e8a792e1f5d70a6c9729f6f98b209b7c",
+    "manifests/app.pp": "6a417cbf8adf54f16ac2f4a89e579ee5",
     "manifests/init.pp": "64cb11e349a3af0754313087a8844a8f",
-    "manifests/maven_deploy.pp": "c904fb17a4ea4a6de75618ac82e901c5",
+    "manifests/maven_deploy.pp": "0ecbf0f974d53bdf78e538ac557d09ad",
     "manifests/params.pp": "774d1e6ed79d1ba9883285558a14313f",
     "manifests/runtime.pp": "b615bf17bef5e6f5e865f852f0c3f15d",
     "manifests/service.pp": "64bf2dc3c6ce09c6c39dcf19bd057a6e",

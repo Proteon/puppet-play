@@ -1,24 +1,22 @@
-# Deploys a play application from a nexus repository.
+# Deploys a play application from a maven repository.
 # The application is supposed to be created with the "play dist" command.
 #
 # === Parameters
 #
 # [*user*] The user owning the application.
-# [*dir*] The directory to deploy to
-# [*group*] The artifact group.
-# [*artifact*] The artifact name.
+# [*dir*] The directory to deploy to.
+# [*groupid*] The artifact group.
+# [*artifactid*] The artifact name.
 # [*version*] The artifact version.
-# [*url*] the url to the artifact repository.
 #
 # === Examples
 #
-#   play:nexus_deploy { 'test-app':
+#   play::maven_deploy { 'test-app':
 #       user        => 'appuser',
-#       group       => 'my.apps',
-#       artifact    => 'test-app',
+#       dir         => '/my/dir/somewhere',
+#       groupid     => 'my.apps',
+#       artifactid  => 'test-app',
 #       version     => '1.0.0-SNAPSHOT',
-#       snapshots   => true,
-#       url         => 'http://my.repo/snapshots',
 #    }
 #
 # === Authors
