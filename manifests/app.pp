@@ -4,9 +4,9 @@
 # === Parameters
 #
 # [*user*] The user owning the application.
-# [*nexus_group*] The artifact group.
-# [*nexus_artifact*] The artifact name.
-# [*nexus_snapshots*] true means the repository contains snapshots, false means releases.
+# [*maven_groupid*] The artifact group.
+# [*maven_artifactid*] The artifact name.
+# [*maven_version*] The artifact version.
 # [*db_host*] The host for the app's database. If localhost, a local mysql server is setup and configured. If not localhost, the
 # configuration should
 # be done elsewhere.
@@ -22,12 +22,11 @@
 # === Examples
 #
 #   play:app { 'test-app':
-#        user            => 'appuser',
-#        nexus_group     => 'my.apps',
-#        nexus_artifact  => 'test-app',
-#        nexus_version   => '1.0.0-SNAPSHOT',
-#        nexus_snapshots => true,
-#        db_password     => 'mysecretpassword',
+#        user             => 'appuser',
+#        maven_groupid    => 'my.apps',
+#        maven_artifactid => 'test-app',
+#        maven_version    => '1.0.0-SNAPSHOT',
+#        db_password      => 'mysecretpassword',
 #    }
 #
 # === Authors
