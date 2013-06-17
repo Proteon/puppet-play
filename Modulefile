@@ -1,5 +1,5 @@
 name 'proteon-play'
-version '0.1.0'
+version '0.1.1'
 
 author 'Proteon'
 license 'Apache License 2.0'

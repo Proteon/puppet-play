@@ -53,14 +53,13 @@ define play::app (
     $max_memory      = '512',
     $cmdline_options = '',) {
     include play
-    include mysql
 
     if !defined(Package[zip]) {
         package { 'zip': ensure => installed, }
     }
-    $app = $name
+    $app       = $name
     $user_home = "${play::params::appsdir}/${user}"
-    $app_home = "${user_home}/${name}"
+    $app_home  = "${user_home}/${name}"
 
     if $db_name {
         $real_db_name = $db_name
@@ -75,6 +74,7 @@ define play::app (
     }
 
     if $db_host == 'localhost' {
+        include mysql
         include mysql::server
 
         mysql::db { $real_db_name:
