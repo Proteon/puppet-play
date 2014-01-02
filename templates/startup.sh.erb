@@ -1,6 +1,7 @@
 #!/bin/sh
 # DO NOT EDIT, managed by puppet
 # play startup script
+export JAVA_HOME="<%= scope.lookupvar(java_home_name) %>"
 OPTIONS="-Dconfig.file=<%= config_file %> -Xms128M -Xmx<%= max_memory %>m -server -Dsbt.log.noformat"
 cd ~/<%= app %>/<%= maven_artifactid %>
 sh start $OPTIONS > ~/<%= app %>.log 2>&1 & 

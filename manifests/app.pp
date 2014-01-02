@@ -50,8 +50,18 @@ define play::app (
     $ip              = '0.0.0.0',
     $port            = '9000',
     $max_memory      = '512',
-    $cmdline_options = '',) {
+    $java_version    = 'openjdk_1_7_0',
+    $cmdline_options = '',
+) {
     include play
+
+    $java_class_name = "::java::${java_version}"
+
+    if (!defined(Class[$java_class_name])) {
+        class { $java_class_name: }
+    }
+
+    $java_home_name = "::java::${java_version}::home"
 
     if !defined(Package[zip]) {
         package { 'zip': ensure => installed, }
